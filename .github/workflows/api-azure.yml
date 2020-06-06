@@ -21,7 +21,7 @@ jobs:
       with:
         nuget verion: ${{ env.nuget_version}}
     - name: NuGet to restore dependencies as well as project-specific tools that are specified in the project file
-      uses: nuget restore
+      run: nuget restore
     - name: add msbuild to path
       uses: microsoft/setup-msbuild@v1.0.0
        
