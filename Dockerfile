@@ -1,11 +1,11 @@
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build-env
 WORKDIR /webapi
 # Copy csproj and restore as distinct layers
-COPY ./*.csproj ./
+COPY api/*.csproj ./
 RUN ["dotnet", "restore"]
 
 # Copy everything else and build
-COPY ./* ./
+COPY api/. ./
 RUN ["dotnet", "publish", "-c", "Release", "-o", "out"]
 
 # Build runtime image
@@ -15,3 +15,4 @@ COPY --from=build-env /webapi/out .
 ENTRYPOINT ["dotnet", "NetCoreAPI.dll"]
 
 
+    
